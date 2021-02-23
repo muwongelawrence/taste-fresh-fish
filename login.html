@@ -38,6 +38,7 @@
      <link rel="stylesheet" href="addcart.css" />
      <link rel="stylesheet" href="enhance.css" />
      <link rel="stylesheet" href="menu-img.css" />
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
      <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase-auth.js"></script>
 
@@ -500,8 +501,52 @@
           <span class="cart-total-price">$0</span>
       </div>
       
+      <div class="container">
+        <div id="accordion">
+          <div class="card">
+            <div class="card-header text-white bg-dark" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-success" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Pay Using PayPal
+                </button>
+              </h5>
+            </div>
+        
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+                <h3>PayPal Payment Service</h3>
+                <center><div id="paypal-button"></div></center> 
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header text-white bg-dark" id="headingThree">
+              <h5 class="mb-0">
+                <button class="btn btn-success collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Pay Using MTN Mobile Money 
+                </button>
+              </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+              <div class="card-body">
+                <h5>Enter Your Amount here</h5>
+                <form id="pay" action="/pay" method="POST"></form>
+                  <div class="input-group col-md-4">
+                    <span class="input-group-text">Phone</span>
+                    <input type="text" name="phone" id="phone" class="form-control">
+                  </div><br />
+                  <div class="col-md-4">
+                    <button type="submit" id="button" class="btn btn-secondary btn-lg btn-block">Pay</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+      </div>
+      </div>
+
       <!-- <button class="btn btn-primary btn-purchase confirm-btn" type="button">PURCHASE</button> -->
-       <center><div id="paypal-button"></div></center> 
+       
   </section>
   <!-- Cart Ends here -->
     
@@ -735,6 +780,55 @@
         />
       </svg>
     </div>
+
+    <script>
+      var form = document.getElementById("pay");
+
+      const button = document.getElementById("button");
+      const elPhone = document.getElementById("phone");
+
+      function loadingForm() {
+        button.disabled = true;
+        button.innerHTML = "Loading";
+      }
+
+      function resetForm() {
+        button.disabled = false;
+        button.innerHTML = "Pay";
+      }
+
+      form.onsubmit = function(event) {
+        event.preventDefault();
+        var formData = new FormData(event.target);
+
+        const phone = elPhone.value;
+
+        loadingForm();
+
+        var settings = {
+          "url": "https://sandbox.momodeveloper.mtn.com/collection/v1_0/requesttopay",
+          "method": "POST",
+          "timeout": 0,
+          "headers": {
+            "X-Reference-Id": "27331b25-a7d5-411b-b49a-ee557d15eb19",
+            "X-Target-Environment": "sandbox",
+            "Ocp-Apim-Subscription-Key": "1bf6a04e804f4901b2c8475172945289",
+            "Content-Type": "application/json",
+            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSMjU2In0.eyJjbGllbnRJZCI6IjI3MzMxYjI1LWE3ZDUtNDExYi1iNDlhLWVlNTU3ZDE1ZWIxOSIsImV4cGlyZXMiOiIyMDIxLTAxLTA2VDIzOjQ2OjE4LjA5MyIsInNlc3Npb25JZCI6IjQzYTRmM2Y3LTU2ZWUtNDE3Yi1iOTY0LWQwYzE3YTdhZTQwNSJ9.HEOUuaJ1YY-cjiUHeqpEbpO0H3FGIge0ojFX5tAkpwLKuXOFy62U023_m66yF2Z3hxsA1vKp4p5xOpZ0uknBNPsAPb_vUWERRH3VZCj40ThXBbQgsyS6OpINXMekm3gsjvHheZJ0bd7dUxhYr6muE5fZ4T0SXO2gS42Ie_hEMcoJHqJqwtPLzFPb1RrfZztpwQrlHtY6wkfXRYul0rAwmg8JTSpERMo1GVag_425p2bXdqFWz1EB3PrFcqBtCTr42vi0fN5G9BrVToAmvnDHGS7OWwN7vPeMVNPopUpi8zSgCwnaog8_eJAaoyBYsMpb0HdNPIxTR8K0R_E3hPcIIA"
+          },
+          "data": JSON.stringify({"amount":"fish-amount","currency":"EUR","externalId":"6353636","payer":{"partyIdType":"MSISDN","partyId":"payer-phone-number"},"payerMessage":"Pay-for-fish-product-one","payeeNote":"thanks-for-using-our-platform"}),
+      };
+
+      $.ajax(settings).done(function (response) {
+          if(!err){
+            console.log(err);
+          }
+          else{
+            console.log("Payment Successful");
+          }
+        });
+      };
+    </script>
 
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
