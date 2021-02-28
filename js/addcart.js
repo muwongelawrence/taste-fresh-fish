@@ -2,6 +2,7 @@
  let ButtonOncart;
  let clickedbutton;
 
+
 let availableTilapia=50;
 let revTilapia=50;
 var tilapiaElement = document.getElementById('til');
@@ -143,11 +144,15 @@ const elements = {
     }
 }
 
+const password ="wwww";
+
+// SELECT ELEMENTS
 if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready)
 } else {
     ready()
 }
+
 
 function ready() {
     var removeCartItemButtons = document.getElementsByClassName('btn-danger')
@@ -174,8 +179,59 @@ function ready() {
     document.getElementsByClassName('confirm-btn')[0].addEventListener('click', purchaseClicked)
 }
 
+function adminLogin(){
+    let pssdElement = document.getElementById("password").value;
+    let availabeElement = document.getElementById("available");
+    let wrongpassword = document.getElementById("wrong");
+    let quantityincrement = document.getElementsByClassName('available')
+    
+    
+   if(pssdElement===password){
+    
+     availabeElement.hidden= false;
+     wrongpassword.hidden = true;
+
+       for (var i = 0; i < quantityincrement.length; i++) {
+        var input = quantityincrement[i];
+    
+
+        input.addEventListener('change',event => {
+            var input = event.target
+           
+            
+            var newquantity;
+            var current= parseFloat(input.value);
+            
+           if(input.value >= 1){
+            // elements.available[0] += 1;
+            // elements.available[0] +=(parseFloat(input.value)-previous);
+            // elements.available[0] = previous + parseFloat(input.value);
+             const previous = elements.available[0] ;
+            
+            elements.available[0] ++;
+            changeitems++;
+        
+
+            console.log(input.value);
+           console.log(elements.available[0]);
+
+        }
+
+        });
+        if(changeitems>0){
+            changekilograms();
+        }
+        }
+
+    } 
+   else{
+    wrongpassword.innerHTML =`Enter Right Admin password.`;
+    availabeElement.hidden= true;
+    wrongpassword.hidden = false;
+   
+   }
+}
 function purchaseClicked() {
-    // alert('Thank you for your purchase')
     var cartItems = document.getElementsByClassName('cart-items')[0]
     while (cartItems.hasChildNodes()) {
         cartItems.removeChild(cartItems.firstChild)
@@ -297,13 +353,23 @@ function addItemToCart(title, price, imageSrc) {
   
 }
 
-
 for(i = 0; i<10 ;i++){
     if(elements.elementnumber[i] === 0){
 
      elements.element[i].innerHTML = `${elements.available[i]}`;
 
     }
+}
+
+function changekilograms(){
+    for(i = 0; i<10 ;i++){
+        if(elements.elementnumber[i] === 0){
+    
+         elements.element[i].innerHTML = `${elements.available[i]}`;
+    
+        }
+    }
+
 }
 
 function deleteupdate(cartbutton){

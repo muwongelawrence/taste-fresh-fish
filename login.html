@@ -537,7 +537,7 @@
                     <input type="text" name="phone" id="phone" class="form-control">
                   </div><br />
                   <div class="col-md-4">
-                    <button type="submit" id="button" class="btn btn-secondary btn-lg btn-block">Pay</button>
+                    <button type="submit" id="button" class="btn btn-secondary btn-lg btn-block" onclick="loadingForm()">Pay</button>
                   </div>
                 </form>
               </div>
@@ -783,14 +783,14 @@
     </div>
 
     <script>
-      var form = document.getElementById("pay");
+      // var form = document.getElementById("pay");
 
-      const button = document.getElementById("button");
-      const elPhone = document.getElementById("phone");
+      // const button = document.getElementById("button");
+      // const elPhone = document.getElementById("phone");
 
       function loadingForm() {
         button.disabled = true;
-        button.innerHTML = "Loading";
+        button.innerHTML = "Loading..";
       }
 
       function resetForm() {
@@ -854,7 +854,7 @@
     <script src="js/addcart.js"></script> 
     <script src="js/fireBase.js"></script>
     <script src="ma.js"></script>
-    <script src="weather/app.js"></script> 
+    <!-- <script src="weather/app.js"></script>  -->
     <!-- <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script> -->
   </body>

@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="css/flaticon.css" />
     <link rel="stylesheet" href="css/icomoon.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="enhance.css" />
 
   </head>
   <body>
@@ -111,8 +112,8 @@
               <div
                 class="chef-img"
                
-                style="background-image: url(images2/background2.jpg)"
-              ></div>
+                style="background-image: url(images2/catfish.jpg)"
+              ></div> 
               
               <p style="color: black;">
                 There hasn't been a secure and organised way of fish
@@ -129,8 +130,106 @@
           </div>
         </div>
       </div>
+      
+
+
     </section>
 
+
+
+    <section id="admin">
+      <p style="text-align: center;">Administrator side only</p>
+      <div class="container">
+        <div id="accordion">
+          <div class="card">
+            <div class="card-header text-white bg-dark" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-success" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Enter Administrator  password
+                </button>
+              </h5>
+            </div>
+        
+             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+                <!-- <h3>PayPal Payment Service</h3>
+                <center><div id="paypal-button"></div></center>  -->
+                <form  action="" method=""></form>
+                  <div class="input-group col-md-4">
+                    <span class="input-group-text">Admin Password:</span>
+                    <input type="password"  id="password" class="form-control" required>
+                  </div><br />
+                  <input type="button" value= "Login" onclick="adminLogin()" >
+                  <p id ="wrong"></p>
+                  <!-- <div class="col-md-4">
+                    <button type="submit" id="button" class="btn btn-secondary btn-lg btn-block" onclick="adminLogin()">Login</button>
+                  </div> -->
+                </form>
+              </div>
+            </div>
+            
+          </div>
+          <div class="card" hidden id="available">
+            <div class="card-header text-white bg-dark" id="headingThree">
+              <h5 class="mb-0">
+                <button class="btn btn-success collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Change available species from here
+                </button>
+              </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+              <div class="card-body">
+                <h5></h5>
+                 <form id="pay" action="" method="POST"></form>
+                  <!-- <div class="input-group col-md-4">
+                    <span class="input-group-text">Phone</span>
+                    <input type="text" name="phone" id="phone" class="form-control">
+                  </div><br />
+                  <div class="col-md-4">
+                    <button type="submit" id="button" class="btn btn-secondary btn-lg btn-block">Pay</button>
+                  </div> -->
+                 <p> <label style ="color: fuchsia;"> Tilapia</label>
+                  
+                  <input  class= "available" type="number" value="1" id="tila">
+                </p>
+                  <p><label style ="color: fuchsia;"> Nileperch</label>
+                    <input  class= "available" type="number" value="1"></p>
+                 <p> <label style ="color: fuchsia;"> Cat fish</label>
+                  <input class= "available"  type="number" value="1"></p>
+                  <p><label style ="color: fuchsia;"> silver fish</label>
+                    <input  class= "available" type="number" value="1"></p>
+                 <p> <label style ="color: fuchsia;"> lung fish</label>
+                  <input class= "available"  type="number" value="1">
+                </p>
+                  <p><label style ="color: fuchsia;"> Mud fish</label>
+                    <input  class= "available" type="number" value="1">
+                  </p>
+                  <p><label style ="color: fuchsia;"> sprat fish</label>
+                    <input   class= "available" type="number" value="1">
+                  </p>
+                <p>  <label style ="color: fuchsia;"> clarias fish</label>
+                  <input  class= "available" type="number" value="1">
+                </p>
+                 <p>
+                  <label style ="color: fuchsia;"> Barbel fish</label>
+                  <input   class= "available" type="number" value="1">
+                 </p>
+                 <p>
+                  <label style ="color: fuchsia;"> carp fish</label>
+                  <input   class= "available" type="number" value="1">
+                 </p>
+                </form> 
+              </div>
+            </div>
+          </div>
+      </div>
+      </div>
+      
+      
+    </section>
+    
+   
+<section>
     <div class="ftco-section">
       <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
@@ -218,6 +317,10 @@
         </div>
       </div>
     </div>
+  </section>
+
+
+    
 
    
 
@@ -364,5 +467,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="js/google-map.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/addcart.js"></script>
   </body>
 </html>
